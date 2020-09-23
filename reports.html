@@ -1,39 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
+    <title>Inventory Management: Finished Goods</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css"
+      integrity="sha512-SUJFImtiT87gVCOXl3aGC00zfDl6ggYAw5+oheJvRJ8KBXZrr/TMISSdVJ5bBarbQDRC2pR5Kto3xTR0kpZInA=="
+      crossorigin="anonymous" />
   </head>
+
   <body style="margin-top: 2rem">
     <div class="container">
-      <nav
-        class="navbar navbar-expand-lg navbar-dark bg-dark"
-        style="margin-bottom: 5rem"
-      >
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin-bottom: 3rem">
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="index.html"
-              >Current Inventory
-            </a>
-            <a class="nav-item nav-link" href="incomingPurchases.html"
-              >Incoming Purchases</a
-            >
-            <a class="nav-item nav-link" href="outgoingOrders.html"
-              >Outgoing Orders</a
-            >
-            <a class="nav-item nav-link active" href="reports.html">Reports</a>
-            <a class="nav-item nav-link" href="barcodes.html">Barcodes</a>
+            <a class="nav-item nav-link font-weight-bold" href="index.html">Current Inventory</a>
+            <a class="nav-item nav-link font-weight-bold" href="incomingPurchases.html">Incoming Purchases</a>
+            <a class="nav-item nav-link font-weight-bold" href="outgoingOrders.html">Outgoing Orders</a>
+            <a class="nav-item nav-link font-weight-bold active" href="reports.html">Reports</a>
+            <a class="nav-item nav-link font-weight-bold" href="barcodes.html">Barcodes</a>
           </div>
         </div>
       </nav>
-      report
+
+      <div class="row" style="margin-bottom: 3rem">
+        <div class="col-7">
+          <canvas id="chart-area"></canvas>
+        </div>
+        <div class="col-4">
+          <div style="margin-bottom: 1rem; font-size: 1.3rem">Products</div>
+          <table class="table-sm table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Inventory Received</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Pulse Oximeters</td>
+                <td>89</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Measuring Tapes</td>
+                <td>62</td>
+
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Face Masks</td>
+                <td>15</td>
+
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Nebulizers</td>
+                <td>59</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 3rem">
+        <div class="col-7">
+          <canvas id="chart-order"></canvas>
+        </div>
+        <div class="col-4">
+          <div style="margin-bottom: 1rem; font-size: 1.3rem">Orders</div>
+          <table class="table-sm table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Order Requirement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Pulse Oximeters</td>
+                <td>120</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Measuring Tapes</td>
+                <td>50</td>
+
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Face Masks</td>
+                <td>80</td>
+
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Nebulizers</td>
+                <td>40</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"
+      integrity="sha512-G8JE1Xbr0egZE5gNGyUm1fF764iHVfRXshIoUWCTPAbKkkItp/6qal5YAHXrxEu4HNfPTQs6HOu3D5vCGS1j3w=="
+      crossorigin="anonymous"></script>
+
+    <script>
+      window.chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+      };
+
+      (function (global) {
+        var MONTHS = [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December'
+        ];
+
+        var COLORS = [
+          '#4dc9f6',
+          '#f67019',
+          '#f53794',
+          '#537bc4',
+          '#acc236',
+          '#166a8f',
+          '#00a950',
+          '#58595b',
+          '#8549ba'
+        ];
+
+        var Samples = global.Samples || (global.Samples = {});
+        var Color = global.Color;
+
+        Samples.utils = {
+          // Adapted from http://indiegamr.com/generate-repeatable-random-numbers-in-js/
+          srand: function (seed) {
+            this._seed = seed;
+          },
+
+          rand: function (min, max) {
+            var seed = this._seed;
+            min = min === undefined ? 0 : min;
+            max = max === undefined ? 1 : max;
+            this._seed = (seed * 9301 + 49297) % 233280;
+            return min + (this._seed / 233280) * (max - min);
+          },
+
+          numbers: function (config) {
+            var cfg = config || {};
+            var min = cfg.min || 0;
+            var max = cfg.max || 1;
+            var from = cfg.from || [];
+            var count = cfg.count || 8;
+            var decimals = cfg.decimals || 8;
+            var continuity = cfg.continuity || 1;
+            var dfactor = Math.pow(10, decimals) || 0;
+            var data = [];
+            var i, value;
+
+            for (i = 0; i < count; ++i) {
+              value = (from[i] || 0) + this.rand(min, max);
+              if (this.rand() <= continuity) {
+                data.push(Math.round(dfactor * value) / dfactor);
+              } else {
+                data.push(null);
+              }
+            }
+
+            return data;
+          },
+
+          labels: function (config) {
+            var cfg = config || {};
+            var min = cfg.min || 0;
+            var max = cfg.max || 100;
+            var count = cfg.count || 8;
+            var step = (max - min) / count;
+            var decimals = cfg.decimals || 8;
+            var dfactor = Math.pow(10, decimals) || 0;
+            var prefix = cfg.prefix || '';
+            var values = [];
+            var i;
+
+            for (i = min; i < max; i += step) {
+              values.push(prefix + Math.round(dfactor * i) / dfactor);
+            }
+
+            return values;
+          },
+
+          months: function (config) {
+            var cfg = config || {};
+            var count = cfg.count || 12;
+            var section = cfg.section;
+            var values = [];
+            var i, value;
+
+            for (i = 0; i < count; ++i) {
+              value = MONTHS[Math.ceil(i) % 12];
+              values.push(value.substring(0, section));
+            }
+
+            return values;
+          },
+
+          color: function (index) {
+            return COLORS[index % COLORS.length];
+          },
+
+          transparentize: function (color, opacity) {
+            var alpha = opacity === undefined ? 0.5 : 1 - opacity;
+            return Color(color).alpha(alpha).rgbString();
+          }
+        };
+
+        // DEPRECATED
+        window.randomScalingFactor = function () {
+          return Math.round(Samples.utils.rand(-100, 100));
+        };
+
+
+
+      }(this));
+
+      var randomScalingFactor = function () {
+        return Math.round(Math.random() * 100);
+      };
+
+      var config = {
+        type: 'pie',
+        data: {
+          datasets: [{
+            data: [
+              89, 62, 15, 59
+            ],
+            backgroundColor: [
+              window.chartColors.red,
+              window.chartColors.orange,
+              window.chartColors.yellow,
+              window.chartColors.green
+            ],
+            label: 'Inventory Products'
+          }],
+          labels: [
+            'Pulse Oximeters',
+            'Measuring Tapes',
+            'Face Masks',
+            'Nebulizers'
+          ]
+        },
+        options: {
+          responsive: true
+        }
+      };
+
+      var orderConfig = {
+        type: 'bar',
+        data: {
+          datasets: [{
+            data: [
+              120, 50, 80, 40
+            ],
+            backgroundColor: [
+              window.chartColors.red,
+              window.chartColors.orange,
+              window.chartColors.yellow,
+              window.chartColors.green
+            ],
+            label: 'Order Requirement'
+          }],
+          labels: [
+            'Pulse Oximeters',
+            'Measuring Tapes',
+            'Face Masks',
+            'Nebulizers'
+          ]
+        },
+        options: {
+          responsive: true
+        }
+      };
+
+      window.onload = function () {
+        var ctx = document.getElementById('chart-area').getContext('2d');
+        window.myPie = new Chart(ctx, config);
+        var ctx = document.getElementById('chart-order').getContext('2d');
+        window.myOrder = new Chart(ctx, orderConfig);
+      };
+
+    </script>
   </body>
+
 </html>

@@ -33,6 +33,7 @@
           </div>
         </div>
       </nav>
+      <div style="margin-bottom: 1rem; font-size: 1.3rem">Products</div>
       <table class="table-sm table table-striped">
         <thead>
           <tr>
@@ -50,7 +51,7 @@
           <tr>
             <th scope="row">1</th>
             <td>Pulse Oximeters</td>
-            <td>Otto</td>
+            <td>pOximtr</td>
             <td>1000</td>
             <td>10</td>
             <td>20</td>
@@ -89,6 +90,159 @@
           </tr>
         </tbody>
       </table>
+      <div>
+          <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#exampleModalCenter"
+        style="font-weight: 800; font-size: 1.3rem;margin-bottom: 3rem;"
+      >
+        +
+      </button>
     </div>
+      
+    <div style="margin-bottom: 1rem; font-size: 1.3rem">Incoming Purchases</div>
+    <table class="table-sm table table-striped" style="margin-bottom: 3rem;">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Purchase Date</th>
+          <th scope="col">Product Id</th>
+          <th scope="col">Number Received</th>
+          <th scope="col">Supplier ID</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>2020-7-12</td>
+          <td>pOximtr</td>
+          <td>1000</td>
+          <td>10</td>
+          
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>2020-8-12</td>
+          <td>pOximtr</td>
+          <td>2000</td>
+          <td>100</td>
+          
+        </tr>
+        
+        
+      </tbody>
+    </table>
+
+    <div style="margin-bottom: 1rem; font-size: 1.3rem">Outgoing Orders</div>
+    <table class="table-sm table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Order Date</th>
+          <th scope="col">Product Id</th>
+          <th scope="col">Number Shipped</th>
+          <th scope="col">Customer Name</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>2020-10-15</td>
+          <td>pOximtr</td>
+         
+          <td>10</td>
+          <td>Monmoy Islam</td>
+          
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>2020-10-12</td>
+          <td>pOximtr</td>
+         
+          <td>100</td>
+          <td>Kazi Noshin</td>
+          
+        </tr>
+        
+        
+      </tbody>
+    </table>
+
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              
+                <input class="form-control" type="text" placeholder="Name"  style="margin-bottom: 1rem;"/>
+                <input class="form-control" type="text" placeholder="Label"  style="margin-bottom: 1rem;" />
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Starting Inventory"
+                  style="margin-bottom: 1rem;"
+                />
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Inventory Received"
+                  style="margin-bottom: 1rem;"
+                />
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Inventory Shipped"
+                  style="margin-bottom: 1rem;"
+                />
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Inventory On Hand"
+                  style="margin-bottom: 1rem;"
+                />
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Minimum Required"
+                  style="margin-bottom: 1rem;"
+                />
+            </div>
+            <div class="modal-footer" style="margin-bottom: 2rem;">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
+
+
